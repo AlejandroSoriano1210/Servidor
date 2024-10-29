@@ -17,5 +17,6 @@
         <li><a href="departamentos">Departamentos</a></li>
         <li><a href="usuarios/login.php">Login</a></li>
     </ul>
+    <script src="/js/flowbite/flowbite.js"></script>
 </body>
 </html>
