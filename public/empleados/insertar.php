@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
     $nombre = obtener_post('nombre');
     $apellidos = obtener_post('apellidos');
     $departamento_id = obtener_post('departamento_id');
-    $pdo = conectar();
+    $pdo = conectar() or die("No se ha podido establecer una conexión");
 
     if (isset($numero, $nombre, $apellidos, $departamento_id)) {
         $errores = [];
@@ -34,11 +35,13 @@
                 ':apellidos' => $apellidos,
                 ':departamento_id' => $departamento_id,
             ]);
-            setcookie('exito', 'El empleado se ha insertado correctamente');
-            volver();
+            $_SESSION['exito'] = 'El empleado se ha insertado correctamente';
+            volver_empleados();
             return;
         }
     }
+
+    cabecera();
     ?>
     <form action="" method="post">
         <label>
